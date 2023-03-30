@@ -33,37 +33,32 @@ const createElem = (tag, textContent) => {
 };
 
 const Populate = data => {
-	// values: Array, element: object
-	const PopulateElement = (values, element) => {
-		for (let i of values) element.appendChild(createElem(i[0], i[1]));
-	};
-
 	const values = [
-		[
-			["h1", data.squadName],
-			["p", `EST: ${data.formed} // Hometown: ${data.homeTown}`],
-			["p", `Hometown: ${data.homeTown}`],
-		],
+		["h1", data.squadName],
+		["p", `EST: ${data.formed} // Hometown: ${data.homeTown}`],
+		["p", `Hometown: ${data.homeTown}`],
 	];
 
 	let superherodata = [];
 
 	// Append data of the heroes to `superherodata`
 	for (let hero of data.members)
-		superherodata.push([
-			["h1", hero.name],
-			["p", `Age: ${hero.age}`],
-			["p", `Secret identity: ${hero.secretIdentity}`],
-			["h3", "Superpowers:"],
+		superherodata.push(
+			...[
+				["h1", hero.name],
+				["p", `Age: ${hero.age}`],
+				["p", `Secret identity: ${hero.secretIdentity}`],
+				["h3", "Superpowers:"],
 
-			...(() => {
-				let k = [];
-				for (let j in hero.powers) k.push(["p", hero.powers[j]]);
-				return k;
-			})(),
-		]);
+				...(() => {
+					let k = [];
+					for (let j in hero.powers) k.push(["p", hero.powers[j]]);
+					return k;
+				})(),
+			]
+		);
 
 	values.push(...superherodata);
 
-	for (let i of values) PopulateElement(i, superheroElem);
+	for (let i of values) superheroElem.appendChild(createElem(i[0], i[1]));
 };
