@@ -9,7 +9,7 @@ let cards = [];
 let sum = 0;
 
 const getCard = () => {
-	let num = Math.floor(Math.random() * 12 + 1);
+	let num = Math.floor(Math.random() * 13) + 1;
 
 	return num === 1 ? 11 : num;
 };
