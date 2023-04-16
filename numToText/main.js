@@ -35,7 +35,7 @@ const convertText = num => {
 		"ninety ",
 	];
 	const tenplus = [
-		"ten ",
+		"ten",
 		"eleven ",
 		"twelve ",
 		"thirteen ",
@@ -84,6 +84,7 @@ const convertText = num => {
 	// ===================================================================
 
 	if (nGroup3.length === 1) {
+		nGroup3[0] = nGroup3[0].replace(/^0+/g, "");
 		if (["000", "00", "0"].includes(nGroup3[0])) return "";
 		if (nGroup3[0].length === 1) return ones[nGroup3[0][0]];
 		if (nGroup3[0].length === 2)
@@ -93,7 +94,7 @@ const convertText = num => {
 
 		let text = "";
 		text += ones[nGroup3[0][0]] + sizes["1"];
-		if (ones[0][1] === 1) return text + tenplus[nGroup3[0][2]];
+		if (nGroup3[0][1] === "1") return text + tenplus[nGroup3[0][2]];
 		text += tens[nGroup3[0][1]];
 		text += ones[nGroup3[0][2]];
 
